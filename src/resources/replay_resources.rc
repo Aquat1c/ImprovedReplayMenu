@@ -1,0 +1,8 @@
+#include <windows.h>
+
+#define IDR_ITC_BOLT_BOLD_REGULAR 101
+#define IDR_ITC_BOLT_TTF 102
+
+IDR_ITC_BOLT_BOLD_REGULAR RCDATA "..\\..\\assets\\fonts\\ITC Bolt Bold Regular.otf"
+// TTF-outline copy for the ImGui text layer (stb_truetype cannot read the CFF .otf).
+IDR_ITC_BOLT_TTF RCDATA "..\\..\\assets\\fonts\\ITC_Bolt_TTF\\ITC Bolt.ttf"

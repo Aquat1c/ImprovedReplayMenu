@@ -1,0 +1,14 @@
+# Ignore decompilation C sources
+*.c
+!third_party/**/*.c
+
+# Ignore markdown notes/docs
+*.md
+!README.md
+
+/build*/
+/assets/*
+!/assets/fonts/
+*.exe
+*.png
+*.dat
