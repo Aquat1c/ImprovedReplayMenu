@@ -15,12 +15,13 @@ for players, in English and Japanese.
 
 ## Installation
 
-1. **Build the DLL** (see [Build](#build)).
+1. **Download the mod:** get the `.zip` from
+   [GitHub Releases](https://github.com/Aquat1c/ImprovedReplayMenu/releases).
 
 2. **Install EFZ Mod Manager** if you don't have it already:
    [EFZ Mod Manager spreadsheet](https://docs.google.com/spreadsheets/d/1r0nBAaQczj9K4RG5zAVV4uXperDeoSnXaqQBal2-8Us/edit?usp=sharing)
 
-3. **Place the mod in your game folder:**
+3. **Unzip it into your game's `mods` folder**, so it looks like this:
 
    ```text
    EFZ/                          <- your game folder
@@ -29,12 +30,10 @@ for players, in English and Japanese.
    `-- mods/
        `-- ImprovedReplayMenu/
            |-- ImprovedReplayMenu.dll
+           |-- readme.txt
            `-- system/
                `-- REPLAY.dat    <- the menu's row artwork
    ```
-
-   Copy `REPLAY.dat` from `assets/system/` in this repository. Without it, the
-   mod uses the row artwork from the game's own replay sheet.
 
 4. **Enable it** in `EfzModManager.ini` under `[Mods]`, above
    `EnglishTranslation` if you use it:
@@ -134,7 +133,10 @@ cmake --build build --config Release
 ctest --test-dir build -C Release
 ```
 
-The DLL is written to `build\bin\<config>\ImprovedReplayMenu.dll`.
+The DLL is written to `build\bin\<config>\ImprovedReplayMenu.dll`. To install your
+own build, put it in the layout shown under [Installation](#installation), with
+`REPLAY.dat` copied from `assets/system/`. Without that file, the mod uses the
+row artwork from the game's own replay sheet.
 
 ## Credits and licenses
 
