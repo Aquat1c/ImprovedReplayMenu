@@ -12,3 +12,7 @@
 *.exe
 *.png
 *.dat
+
+# The menu row artwork, deployed to <mod>/system/
+!/assets/system/
+!/assets/system/REPLAY.dat

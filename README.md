@@ -33,8 +33,8 @@ for players, in English and Japanese.
                `-- REPLAY.dat    <- the menu's row artwork
    ```
 
-   `REPLAY.dat` is not in this repository. Without it, the mod uses the row
-   artwork from the game's own replay sheet.
+   Copy `REPLAY.dat` from `assets/system/` in this repository. Without it, the
+   mod uses the row artwork from the game's own replay sheet.
 
 4. **Enable it** in `EfzModManager.ini` under `[Mods]`, above
    `EnglishTranslation` if you use it:
