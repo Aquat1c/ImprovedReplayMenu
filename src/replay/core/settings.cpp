@@ -16,9 +16,10 @@ namespace
 Language g_language = Language::Auto;
 browser::ReplaySortOrder g_sortOrder = browser::ReplaySortOrder::NewestFirst;
 bool g_backgroundScroll = true;
+bool g_frameCounter = true;
 bool g_rewindEnabled = true;
 int g_rewindKeys[static_cast<int>(RewindKey::Count)] = {};
-const wchar_t* const kRewindKeyNames[] = {L"KeyBack", L"KeyForward", L"KeyPrevRound", L"KeyNextRound"};
+const wchar_t* const kRewindKeyNames[] = {L"KeyBack", L"KeyForward", L"KeyPrevRound", L"KeyNextRound", L"KeyToggleCounter"};
 
 int DefaultKeyFor(wchar_t ch, UINT vk, int fallback)
 {
@@ -38,6 +39,7 @@ int DefaultRewindKey(RewindKey key)
     case RewindKey::Back: return DefaultKeyFor(L'-', VK_OEM_MINUS, 0x0C);
     case RewindKey::Forward: return 0x19; // P
     case RewindKey::PrevRound: return 0x0E; // Backspace
+    case RewindKey::ToggleCounter: return 0x23; // H
     default: return DefaultKeyFor(L'\\', VK_OEM_5, 0x2B);
     }
 }
@@ -81,6 +83,8 @@ void Load()
                                                         : browser::ReplaySortOrder::NewestFirst;
     GetPrivateProfileStringW(L"Settings", L"BackgroundScroll", L"on", value, 32, path.c_str());
     g_backgroundScroll = _wcsicmp(value, L"off") != 0;
+    GetPrivateProfileStringW(L"Settings", L"FrameCounter", L"on", value, 32, path.c_str());
+    g_frameCounter = _wcsicmp(value, L"off") != 0;
     g_rewindEnabled = GetPrivateProfileIntW(L"Rewind", L"Enabled", 1, path.c_str()) != 0;
     for (int i = 0; i < static_cast<int>(RewindKey::Count); ++i)
     {
@@ -178,6 +182,17 @@ void SetBackgroundScroll(bool enabled)
 {
     g_backgroundScroll = enabled;
     Write(L"BackgroundScroll", enabled ? L"on" : L"off");
+}
+
+bool GetFrameCounter()
+{
+    return g_frameCounter;
+}
+
+void SetFrameCounter(bool enabled)
+{
+    g_frameCounter = enabled;
+    Write(L"FrameCounter", enabled ? L"on" : L"off");
 }
 
 Language GetLanguage()

@@ -24,11 +24,12 @@ enum class OptionsItem : std::size_t
     RefreshFolder,
     BackgroundScroll,
     Language,
+    FrameCounter,
     RewindKeys,
     Count,
 };
 
-constexpr std::size_t kRewindKeysPageRows = 5;
+constexpr std::size_t kRewindKeysPageRows = 6;
 
 enum class FilterPageRow : std::size_t
 {

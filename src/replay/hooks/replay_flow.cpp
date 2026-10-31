@@ -1046,6 +1046,12 @@ bool OnSub76F060HandleListInput(std::uint32_t screenContext, int playerIndex, co
                 PlayUiSound(callbacks, screenContext, 6u);
                 handled = true;
             }
+            else if (valueStep != 0 && item == OptionsItem::FrameCounter)
+            {
+                replay::settings::SetFrameCounter(!replay::settings::GetFrameCounter());
+                PlayUiSound(callbacks, screenContext, 6u);
+                handled = true;
+            }
             else if (valueStep != 0 && item == OptionsItem::Language)
             {
                 const int next = (static_cast<int>(replay::settings::GetLanguage()) + (valueStep > 0 ? 1 : 2)) % 3;

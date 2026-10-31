@@ -139,9 +139,9 @@ constexpr bool kOverlayRewriteRowBackgrounds = false;
 constexpr std::uint8_t kOverlayTextClearColorIndex = 0;
 constexpr int kOptionsPanelLeftNative = 64;
 constexpr int kOptionsPanelRightNative = 256;
-constexpr int kOptionsPanelTopNative = 28;
+constexpr int kOptionsPanelTopNative = 14;
 constexpr int kOptionsTitleHeightNative = 18;
-constexpr int kOptionsItemStartYNative = 50;
+constexpr int kOptionsItemStartYNative = 36;
 constexpr int kOptionsItemStepNative = 14;
 constexpr int kOptionsHighlightHeightNative = 12;
 constexpr int kOptionsAboutYNative = 150;
@@ -1639,9 +1639,9 @@ void DrawOptionsPanel(
         : menuState.filterPage                   ? Tr(Text::FilterTitle)
                                                  : Tr(Text::OptionsTitle);
     static constexpr Text kOptionsTips[] = {Text::TipRecord, Text::TipSort, Text::TipPlayFolder, Text::TipRefresh,
-        Text::TipBackground, Text::TipLanguage, Text::TipRewindKeys};
+        Text::TipBackground, Text::TipLanguage, Text::TipFrameCounter, Text::TipRewindKeys};
     static constexpr Text kKeysTips[] = {Text::TipKeyBack, Text::TipKeyForward, Text::TipKeyPrevRound,
-        Text::TipKeyNextRound, Text::TipKeysRestore};
+        Text::TipKeyNextRound, Text::TipKeyToggleCounter, Text::TipKeysRestore};
     static constexpr Text kFilterTips[] = {Text::TipFilterSort, Text::TipFilterCharacter, Text::TipFilterCharacter2,
         Text::TipFilterPlayer, Text::TipFilterClear};
     static_assert(std::size(kOptionsTips) == kOptionsItemCount);
@@ -1656,7 +1656,8 @@ void DrawOptionsPanel(
         ? Tr(tipRow == static_cast<std::size_t>(replay::hooks::FilterPageRow::Clear) ? Text::HintFilterClear : Text::FilterHint)
         : !menuState.keysPage
         ? Tr(optionsRow == replay::hooks::OptionsItem::Sort ? Text::HintOptionsSort
-                : (optionsRow == replay::hooks::OptionsItem::BackgroundScroll || optionsRow == replay::hooks::OptionsItem::Language)
+                : (optionsRow == replay::hooks::OptionsItem::BackgroundScroll || optionsRow == replay::hooks::OptionsItem::Language
+                    || optionsRow == replay::hooks::OptionsItem::FrameCounter)
                 ? Text::HintOptionsValue
                 : Text::HintOptionsAction)
         : (menuState.captureRow < 0) ? Tr(Text::KeysHint)
@@ -1713,7 +1714,7 @@ void DrawOptionsPanel(
         if (menuState.keysPage)
         {
             static constexpr Text kKeyLabels[] = {
-                Text::KeyBack, Text::KeyForward, Text::KeyPrevRound, Text::KeyNextRound, Text::KeysRestore};
+                Text::KeyBack, Text::KeyForward, Text::KeyPrevRound, Text::KeyNextRound, Text::KeyToggleCounter, Text::KeysRestore};
             label = Tr(kKeyLabels[i]);
             if (i + 1u < rowCount)
             {
@@ -1762,6 +1763,10 @@ void DrawOptionsPanel(
         case replay::hooks::OptionsItem::BackgroundScroll:
             label = Tr(Text::BackgroundScroll);
             value = Tr(replay::settings::GetBackgroundScroll() ? Text::On : Text::Off);
+            break;
+        case replay::hooks::OptionsItem::FrameCounter:
+            label = Tr(Text::FrameCounter);
+            value = Tr(replay::settings::GetFrameCounter() ? Text::On : Text::Off);
             break;
         case replay::hooks::OptionsItem::Language:
             label = Tr(Text::Language);
@@ -2821,7 +2826,7 @@ std::uint8_t NearestPaletteIndex(std::uint32_t graphicsContext, int r, int g, in
 
 bool DrawPlaybackFrameIndicator()
 {
-    if (g_playbackBattle == 0 || GetTickCount() - g_playbackTick > 200u)
+    if (g_playbackBattle == 0 || GetTickCount() - g_playbackTick > 200u || !replay::settings::GetFrameCounter())
     {
         return false;
     }

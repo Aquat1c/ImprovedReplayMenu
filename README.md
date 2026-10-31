@@ -65,6 +65,7 @@ To uninstall, set `ImprovedReplayMenu=0` or delete the mod folder.
 | `P` | One frame forward | Fast forward, getting faster |
 | `Backspace` | Restart the current round | |
 | `\` | Skip to the next round | |
+| `H` | Show or hide the frame counter | |
 
 These are defaults and follow your keyboard layout. Change them under
 **Options > Rewind keys**. `P` replaces Revival's next-frame key during replay
@@ -87,13 +88,14 @@ Options are saved in `ImprovedReplayMenu.ini` beside the DLL.
 Language=auto          ; auto, en or ja
 Sort=newest            ; newest, oldest, player or size
 BackgroundScroll=on    ; on or off
+FrameCounter=on        ; on or off
 
 [Rewind]
 Enabled=1              ; 0 turns rewind off and leaves Revival's replay keys stock
 KeyBack=0x0C           ; DIK codes, set from Options > Rewind keys
 ```
 
-`KeyForward`, `KeyPrevRound` and `KeyNextRound` work the same way as `KeyBack`.
+`KeyForward`, `KeyPrevRound`, `KeyNextRound` and `KeyToggleCounter` work the same way as `KeyBack`.
 Filters last until the game closes and are not saved.
 
 ## Compatibility

@@ -1157,7 +1157,7 @@ void ScanIteration(std::uintptr_t s, void* edx, const std::uint8_t (&keys)[256],
     bool anyPress = false;
     for (int i = 0; i < kKeyCount; ++i)
     {
-        anyPress = anyPress || ev[i] == KeyEvent::Press;
+        anyPress = anyPress || (ev[i] == KeyEvent::Press && i != static_cast<int>(RewindKey::ToggleCounter));
     }
     if (anyPress || Paused(s))
     {
@@ -1408,7 +1408,11 @@ void StepAllKeys(std::uintptr_t s, const std::uint8_t (&keys)[256], KeyEvent (&e
             continue;
         }
         ev[i] = replay::input::StepKey(g_x.timers[i], down, now, kHoldMs);
-        if (ev[i] == KeyEvent::Press)
+        if (ev[i] == KeyEvent::Press && static_cast<RewindKey>(i) == RewindKey::ToggleCounter)
+        {
+            replay::settings::SetFrameCounter(!replay::settings::GetFrameCounter());
+        }
+        else if (ev[i] == KeyEvent::Press)
         {
             g_x.lastPressed = i;
         }

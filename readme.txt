@@ -1,4 +1,4 @@
-﻿IMPROVED REPLAY MENU FOR EFZ  (version 1.1.0)
+﻿IMPROVED REPLAY MENU FOR EFZ  (version 1.1.1)
 =============================================
 日本語の説明は英語の説明の後にあります。
 
@@ -46,6 +46,7 @@ Options:
   Refresh Folder  Read the folder again
   Scrolling BG    Turn the moving background on or off
   Language        Auto, English or Japanese
+  Frame counter   Show or hide the frame counter during replays
   Rewind keys     Change the keys below
   About           Shown at the bottom: mod name, version and build date
 
@@ -76,6 +77,7 @@ Keys during a replay
   P           One frame forward           Fast forward, getting faster
   Backspace   Restart the current round
   \           Skip to the next round
+  H           Show or hide the frame counter
 
 - A tap leaves the replay paused. Press Revival's pause key to continue.
 - When you release a held key, the replay goes back to how it was: still
@@ -89,7 +91,8 @@ Keys during a replay
   other game modes.
 
 Frame counter: shows the current frame and the total, like 1234/5678, at the
-bottom of the screen. Short messages can appear beside it:
+bottom of the screen. Short messages can appear beside it. Hiding the counter
+hides these too:
 
   REW         Rewinding
   FF          Fast forwarding or looking for the next round
@@ -186,6 +189,7 @@ Notes
   フォルダを再読み込み  フォルダを読み直す
   背景スクロール        背景の動きをオン / オフ
   言語                  自動 / English / 日本語
+  フレームカウンター    リプレイ再生中のカウンターを表示 / 非表示
   巻き戻しキー          下記のキーを変更
   バージョン情報        下部に表示 (Mod名、バージョン、ビルド日時)
 
@@ -216,6 +220,7 @@ Notes
   P           1フレーム進む         早送り (だんだん速くなります)
   Backspace   現在のラウンドの先頭へ
   \           次のラウンドへスキップ
+  H           フレームカウンターを表示 / 非表示
 
 - 短押しすると一時停止します。再開するには Revival の一時停止キーを押してください。
 - 長押しをやめると、押す前の状態 (再生中または一時停止中) に戻ります。
@@ -228,7 +233,8 @@ Notes
   影響しません。
 
 フレームカウンター: 現在のフレームと総フレーム数を 1234/5678 のように画面下部に
-表示します。横に短いメッセージが出ることがあります。
+表示します。横に短いメッセージが出ることがあります。カウンターを非表示にすると、
+メッセージも表示されません。
 
   REW         巻き戻し中
   FF          早送り中、または次のラウンドを検索中
